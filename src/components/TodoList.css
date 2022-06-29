@@ -1,0 +1,16 @@
+.TodoList-button {
+  background-color: rgba(74, 222, 128, 1);
+  color: #fff;
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 600;
+  padding: 20px 34px;
+  border-radius: 57px;
+  border: none;
+}
+
+.Edit__wrapper {
+  border: 1ps solid grey;
+  padding: 10px;
+  margin-bottom: 10px;
+}
