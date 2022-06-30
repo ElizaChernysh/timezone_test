@@ -86,13 +86,6 @@ const TodoList = (props) => {
           </button>
         </div>
       )}
-      {/* <ul className="TodoList__list">
-        {props.todos.map((item) => {
-          return (
-            
-          );
-        })}
-      </ul> */}
     </div>
   );
 };
