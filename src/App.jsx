@@ -1,14 +1,14 @@
 import './App.css';
 import TodoList from './components/TodoList';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import DisplayTodos from './components/DisplayTodos';
 
 function App() {
   return (
     <div className="App">
-      <header>
         <h1>Event Manager</h1>
         <TodoList/>
-      </header>
+        <DisplayTodos/>
     </div>
   );
 }
