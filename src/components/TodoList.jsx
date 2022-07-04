@@ -8,6 +8,7 @@ import {
   removeTodos,
   updateTodos,
 } from "../redux/reducer";
+// import { getTimezones } from "../api";
 import "./TodoList.css";
 
 const mapStateToProps = (state) => {
@@ -26,21 +27,20 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const TodoList = (props) => {
-  const [todos, setTodos] = useState("");
+  const [todos, setTodos] = useState([]);
   const [time, setTime] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [datetime, setDatetime] = useState("Central Europen Time");
-
-  const hadleDatetyimeChange = (event) => {
-    setDatetime(event.target.value);
-  };
 
   const handleChangeTodo = (event) => {
     setTodos(event.target.value);
   };
 
   const handleChangeTime = (event) => {
-    setTime(event.target.value);
+    const valueOfTime = new Date(`${event.target.value}`).toLocaleString('en-US', {
+      timeZone: datetime,
+    })
+    setTime(valueOfTime);
   };
 
   const openAdd = () => {
@@ -58,6 +58,11 @@ const TodoList = (props) => {
         published: false,
       });
       setTodos("");
+      console.log(time.toLocaleString('en-US', {
+        timeZone: 'America/New_York',
+        dateStyle: 'short',
+        timeStyle: 'short',
+      }),);
       setTime(null);
     }
   };
@@ -66,7 +71,17 @@ const TodoList = (props) => {
     <div className="TodoList">
       <select
         defaultValue={datetime}
-        onChange={handleChangeTodo}
+        onChange={(event) => setDatetime(event.target.value)}
+      >
+        {Timezones.timezones.map((option) => (
+          <option key={option.id} value={option.name}>
+            {option.name}
+          </option>
+        ))}
+      </select>
+      {/* <select
+        value={datetime}
+        onChange={hadleDatetyTimeChange}
         className="TodoList-select"
       >
         <option selected value="1">
@@ -75,7 +90,7 @@ const TodoList = (props) => {
         <option value="2">Marketing</option>
         <option value="3">Work</option>
         <option value="3">Head Office</option>
-      </select>
+      </select> */}
 
       <button type="button" className="TodoList-button" onClick={openAdd}>
         + Add Event
@@ -90,8 +105,8 @@ const TodoList = (props) => {
             placeholder="Title"
           />
           <input
-            type="date"
-            min="30.06.2022"
+            type="datetime-local"
+            min="2020-06-07T00:00"
             value={time}
             onChange={(event) => handleChangeTime(event)}
           />
