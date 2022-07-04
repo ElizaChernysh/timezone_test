@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
+import './TodoItem.css';
 
 const TodoItem = (props) => {
   const { item, updateTodo, removeTodo, publishedTodo } = props;
   const [isEditVisible, setIsEditVisible] = useState(false);
+  
 
   const editVisibility = () => {
     setIsEditVisible(!isEditVisible);
@@ -25,6 +27,7 @@ const TodoItem = (props) => {
   return (
     <li key={item.id} className="TodoList__card">
       <textarea
+        className="TodoList__textarea"
         ref={inputRef}
         disabled={inputRef}
         defaultValue={item.item}

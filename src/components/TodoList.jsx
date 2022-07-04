@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addTodos, publishedTodos, removeTodos, updateTodos } from "../redux/reducer";
+import { v4 as uuidv4 } from "uuid";
+import Timezones from "../timezones.json";
+import {
+  addTodos,
+  publishedTodos,
+  removeTodos,
+  updateTodos,
+} from "../redux/reducer";
 import "./TodoList.css";
 
 const mapStateToProps = (state) => {
@@ -20,8 +27,13 @@ const mapDispatchToProps = (dispatch) => {
 
 const TodoList = (props) => {
   const [todos, setTodos] = useState("");
-  const [time, setTime] = useState(null)
+  const [time, setTime] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [datetime, setDatetime] = useState("Central Europen Time");
+
+  const hadleDatetyimeChange = (event) => {
+    setDatetime(event.target.value);
+  };
 
   const handleChangeTodo = (event) => {
     setTodos(event.target.value);
@@ -29,29 +41,42 @@ const TodoList = (props) => {
 
   const handleChangeTime = (event) => {
     setTime(event.target.value);
-  }
+  };
 
   const openAdd = () => {
     setIsOpen(!isOpen);
   };
 
   const addNewTodo = () => {
-    if (todos === "" || ! todos.trim()) {
-      alert("Input is Empty")
+    if (todos === "" || !todos.trim()) {
+      alert("Input is Empty");
     } else {
       props.addTodo({
-        id: Math.floor(Math.random() * 1000),
+        id: uuidv4(),
         item: todos,
         time: time,
         published: false,
       });
       setTodos("");
-      setTime(null)
+      setTime(null);
     }
   };
 
   return (
     <div className="TodoList">
+      <select
+        defaultValue={datetime}
+        onChange={handleChangeTodo}
+        className="TodoList-select"
+      >
+        <option selected value="1">
+          Home
+        </option>
+        <option value="2">Marketing</option>
+        <option value="3">Work</option>
+        <option value="3">Head Office</option>
+      </select>
+
       <button type="button" className="TodoList-button" onClick={openAdd}>
         + Add Event
       </button>
@@ -73,13 +98,6 @@ const TodoList = (props) => {
           <button
             type="button"
             className="addTodos-button"
-            // onClick={() =>
-            //   props.addTodo({
-            //     id: Math.floor(Math.random() * 1000),
-            //     item: todos,
-            //     published: false,
-            //   })
-            // }
             onClick={() => addNewTodo()}
           >
             + Add
