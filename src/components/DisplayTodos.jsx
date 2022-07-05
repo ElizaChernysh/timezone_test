@@ -25,16 +25,11 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const DisplayTodos = (props) => {
-  const [sort, setSort] = useState("published");
 
   return (
     <div className="DisplayTodos">
-      <div className="DisplayTodos-buttons">
-        <button onClick={() => setSort("unpublished")}>unpublished</button>
-        <button onClick={() => setSort("published")}>published</button>
-      </div>
       <ul>
-        {props.todos.length > 0 && sort === "published"
+        {props.todos.length > 0
           ? props.todos.map((item) => {
               return (
                 <TodoItem
@@ -48,7 +43,8 @@ const DisplayTodos = (props) => {
               );
             })
           : null}
-
+          </ul>
+{/* 
         {props.todos.length > 0 && sort === "unpublished"
           ? props.todos.map((item) => {
               return (
@@ -62,7 +58,7 @@ const DisplayTodos = (props) => {
               );
             })
           : null}
-      </ul>
+      </ul> */}
     </div>
   );
 };

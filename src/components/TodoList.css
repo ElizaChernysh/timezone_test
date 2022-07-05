@@ -1,3 +1,28 @@
+.TodoList__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.TodoList__title {
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 49px;
+}
+
+.TodoList__select {
+  max-width: 272px;
+}
+
+.TodoList__creator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 45px;
+  border: 1px solid red;;
+}
+
 .TodoList-button {
   background-color: rgba(74, 222, 128, 1);
   color: #fff;
@@ -9,8 +34,28 @@
   border: none;
 }
 
+.addTodos {
+  display: flex;
+  border: 1px solid black;
+  justify-content: space-between;
+  margin-bottom: 45px;
+}
+
+.addTodos-input {
+  display: inline-block;
+}
+
+.addTodods__wrapper {
+  display: flex;
+}
+
 .Edit__wrapper {
   border: 1ps solid grey;
   padding: 10px;
   margin-bottom: 10px;
 }
+
+.DisplayTodos {
+  display: flex;
+}
+
