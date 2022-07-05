@@ -25,13 +25,15 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const DisplayTodos = (props) => {
+ const  {selectedOption} = props;
 
   return (
     <div className="DisplayTodos">
       <ul>
-        {props.todos.length > 0
+        {props.todos.length > 0 && selectedOption === "published"
           ? props.todos.map((item) => {
               return (
+                item.published === true &&
                 <TodoItem
                   key={item.id}
                   item={item}
@@ -43,11 +45,11 @@ const DisplayTodos = (props) => {
               );
             })
           : null}
-          </ul>
-{/* 
-        {props.todos.length > 0 && sort === "unpublished"
+
+        {props.todos.length > 0 && selectedOption === "unpublished"
           ? props.todos.map((item) => {
               return (
+                item.published === false &&
                 <TodoItem
                   key={item.id}
                   item={item}
@@ -58,7 +60,7 @@ const DisplayTodos = (props) => {
               );
             })
           : null}
-      </ul> */}
+      </ul>
     </div>
   );
 };

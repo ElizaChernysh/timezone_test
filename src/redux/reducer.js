@@ -32,7 +32,7 @@ const addTodoReducer = createSlice({
         if(todo.id === action.payload) {
           return {
             ...todo,
-            published: true,
+            published: !todo.published,
           };
         }
         return todo;

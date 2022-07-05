@@ -74,7 +74,7 @@ const TodoList = (props) => {
       //   dateStyle: 'short',
       //   timeStyle: 'short',
       // }),);
-      setTime(null);
+      // setTime(null);
     }
   };
 
@@ -97,8 +97,12 @@ const TodoList = (props) => {
 
       <div className="TodoList__creator">
         <div className="DisplayTodos-buttons">
-          <button onClick={() => setSelectedOption("unpublished")}>unpublished</button>
-          <button onClick={() => setSelectedOption("published")}>published</button>
+          <button onClick={() => setSelectedOption("published")}>
+            published
+          </button>
+          <button onClick={() => setSelectedOption("unpublished")}>
+            unpublished
+          </button>
         </div>
 
         <button type="button" className="TodoList-button" onClick={openAdd}>
@@ -133,6 +137,7 @@ const TodoList = (props) => {
           </div>
         </InputGroup>
       )}
+      <DisplayTodos selectedOption={selectedOption} />
     </div>
   );
 };
