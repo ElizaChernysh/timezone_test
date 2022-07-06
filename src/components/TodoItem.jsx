@@ -1,10 +1,9 @@
 import React, { useState, useRef } from "react";
-import './TodoItem.css';
+import "./TodoItem.css";
 
 const TodoItem = (props) => {
-  const { item, updateTodo, removeTodo, publishedTodo } = props;
+  const { item, updateTodo, removeTodo, publishedTodo, timezone} = props;
   const [isEditVisible, setIsEditVisible] = useState(false);
-  
 
   const editVisibility = () => {
     setIsEditVisible(!isEditVisible);
@@ -16,6 +15,7 @@ const TodoItem = (props) => {
     inputRef.current.disabled = false;
     inputRef.current.focus();
   };
+
 
   const update = (id, value, e) => {
     if (e.which === 13) {
@@ -33,10 +33,23 @@ const TodoItem = (props) => {
         defaultValue={item.item}
         onKeyPress={(e) => update(item.id, inputRef.current.value, e)}
       />
-      <p>{item.time}</p>
-      <button type="button" onClick={editVisibility}>
-        ...
-      </button>
+      <div className="container">
+        <button type="button" onClick={editVisibility}>
+          ...
+        </button>
+        {/* <p className="TodoItem__time">{item.time}</p> */}
+        <p className="TodoItem__time">
+        {new Date(item.time).toLocaleString('en-US', {
+                    timeZone: `${timezone}`,
+                    year: 'numeric',
+                    day: '2-digit',
+                    month: 'short',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}
+        </p>
+      </div>
+
       {isEditVisible && (
         <>
           <div className="btns">

@@ -20,7 +20,7 @@
   justify-content: space-between;
   width: 100%;
   margin-bottom: 45px;
-  border: 1px solid red;;
+  border: 1px solid red;
 }
 
 .TodoList-button {
@@ -56,6 +56,18 @@
 }
 
 .DisplayTodos {
-  display: flex;
+  border: 1px solid red;
+  display: grid;
 }
 
+.DisplayTodos__wrapper {
+  border: 1px solid rgb(138, 79, 79);
+  padding: 0;
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)) repeat(3, 200px);
+  /* grid-template-columns: repeat(auto-fill, 1fr); */
+  grid-template-columns: 1fr 1fr 1fr;;
+  gap: 20px;
+  padding: 0;
+}

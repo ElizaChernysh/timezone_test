@@ -11,6 +11,7 @@ import {
   publishedTodos,
   removeTodos,
   updateTodos,
+  updateTimes,
 } from "../redux/reducer";
 // import { getTimezones } from "../api";
 import "./TodoList.css";
@@ -27,33 +28,71 @@ const mapDispatchToProps = (dispatch) => {
     removeTodo: (id) => dispatch(removeTodos(id)),
     updateTodo: (obj) => dispatch(updateTodos(obj)),
     publishedTodo: (id) => dispatch(publishedTodos(id)),
+    updateTime: (obj) => dispatch(updateTimes(obj)), 
   };
 };
+
+// function convertTZ(date, tzString) {
+//   return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+// }
 
 const TodoList = (props) => {
   const [selectedOption, setSelectedOption] = useState("published");
   const [todos, setTodos] = useState([]);
   const [time, setTime] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [datetime, setDatetime] = useState("Central Europen Time");
-  const [timezone, setTimeZone] = useState("Europe/Berlin");
+  // const [timezone, setTimeZone] = useState("Europe/Berlin");
+   const [timezone, setTimeZone] = useState(Timezones.timezones[0].value);
 
   const handleChangeTodo = (event) => {
     setTodos(event.target.value);
   };
 
+  // useEffect(() => {
+  //     const newFormat = time;
+  //     const valueOfNewTime = new Date(`${newFormat}`).toLocaleString("en-US", {
+  //       timeZone: timezone,
+  //       timeStyle: "short",
+  //       dateStyle: "short",
+  //     });
+
+  //     props.updateTime({time: valueOfNewTime});
+  // }, [timezone]);
+
+  const handleTimezoneName = (event) => {
+    setTimeZone(event.target.value);
+
+    // if (timezone !== "Europe/Berlin") {
+    //   const newTodos = todos.map(todo => {
+    //     return {
+    //       ...todo,
+    //       time: convertTZ(new Date(time), timezone),
+    //     }
+    //   });
+    //   setTodos(newTodos);
+    //   console.log(newTodos);
+    // };
+    console.log(timezone);
+  }
+
+    console.log(timezone);
+    console.log(Timezones.timezones);
+    // console.log(time);
+
   const handleChangeTime = (event) => {
-    const format = event.target.value;
-    const valueOfTime = new Date(`${format}`).toLocaleString("en-US", {
-      timeZone: timezone,
-    });
-    setTime(valueOfTime);
+    setTime(event.target.value);
+    // const format = event.target.value;
+    // const valueOfTime = new Date(`${format}`).toLocaleString("en-US", {
+    //   timeZone: timezone,
+    //   timeStyle: "short",
+    //   dateStyle: "short",
+    // });
+    // setTime(valueOfTime);
   };
 
   const openAdd = () => {
     setIsOpen(!isOpen);
   };
-  console.log(datetime);
 
   // const clickPublishedButton = () => {
   // }
@@ -69,12 +108,6 @@ const TodoList = (props) => {
         published: true,
       });
       setTodos("");
-      // console.log(time.toLocaleString('en-US', {
-      //   timeZone: 'America/New_York',
-      //   dateStyle: 'short',
-      //   timeStyle: 'short',
-      // }),);
-      // setTime(null);
     }
   };
 
@@ -84,8 +117,10 @@ const TodoList = (props) => {
         <h1 className="TodoList__title">Event Manager</h1>
         <Form.Select
           className="TodoList__select"
-          defaultValue={"Central Europen Time"}
-          onChange={(event) => setDatetime(event.target.value)}
+          value={timezone}
+          // defaultValue={Timezones.timezones[0].value}
+          // onChange={(event) => setTimeZone(event.target.value)}
+          onChange={(event) => handleTimezoneName(event)}
         >
           {Timezones.timezones.map((option) => (
             <option key={option.id} value={option.value}>
@@ -137,7 +172,10 @@ const TodoList = (props) => {
           </div>
         </InputGroup>
       )}
-      <DisplayTodos selectedOption={selectedOption} />
+      <DisplayTodos 
+        selectedOption={selectedOption}
+        timezone={timezone}
+      />
     </div>
   );
 };
