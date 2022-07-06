@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import Timezones from "../timezones.json";
@@ -13,7 +13,6 @@ import {
   updateTodos,
   updateTimes,
 } from "../redux/reducer";
-// import { getTimezones } from "../api";
 import "./TodoList.css";
 
 const mapStateToProps = (state) => {
@@ -28,7 +27,7 @@ const mapDispatchToProps = (dispatch) => {
     removeTodo: (id) => dispatch(removeTodos(id)),
     updateTodo: (obj) => dispatch(updateTodos(obj)),
     publishedTodo: (id) => dispatch(publishedTodos(id)),
-    updateTime: (obj) => dispatch(updateTimes(obj)), 
+    // updateTime: (obj) => dispatch(updateTimes(obj)), 
   };
 };
 
@@ -39,63 +38,33 @@ const mapDispatchToProps = (dispatch) => {
 const TodoList = (props) => {
   const [selectedOption, setSelectedOption] = useState("published");
   const [todos, setTodos] = useState([]);
-  const [time, setTime] = useState(null);
+  // const [showTodos, setShowTodos] = useState([]);
+  const [time, setTime] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   // const [timezone, setTimeZone] = useState("Europe/Berlin");
    const [timezone, setTimeZone] = useState(Timezones.timezones[0].value);
 
-  const handleChangeTodo = (event) => {
-    setTodos(event.target.value);
-  };
+  //  useEffect(() => {
+  //   const filteredTodos = [] // викливати хелпер getFilteredTodos(boolean), передаємо todos
+  //   setShowTodos(filteredTodos);
+  //  }, [seletedOption, setShowTodos])
 
-  // useEffect(() => {
-  //     const newFormat = time;
-  //     const valueOfNewTime = new Date(`${newFormat}`).toLocaleString("en-US", {
-  //       timeZone: timezone,
-  //       timeStyle: "short",
-  //       dateStyle: "short",
-  //     });
-
-  //     props.updateTime({time: valueOfNewTime});
-  // }, [timezone]);
+   const handleChangeTodo = useCallback((event) => {
+    setTodos(event.target.value)
+  }, [setTodos])
 
   const handleTimezoneName = (event) => {
     setTimeZone(event.target.value);
-
-    // if (timezone !== "Europe/Berlin") {
-    //   const newTodos = todos.map(todo => {
-    //     return {
-    //       ...todo,
-    //       time: convertTZ(new Date(time), timezone),
-    //     }
-    //   });
-    //   setTodos(newTodos);
-    //   console.log(newTodos);
-    // };
-    console.log(timezone);
+    // console.log(timezone);
   }
-
-    console.log(timezone);
-    console.log(Timezones.timezones);
-    // console.log(time);
 
   const handleChangeTime = (event) => {
     setTime(event.target.value);
-    // const format = event.target.value;
-    // const valueOfTime = new Date(`${format}`).toLocaleString("en-US", {
-    //   timeZone: timezone,
-    //   timeStyle: "short",
-    //   dateStyle: "short",
-    // });
-    // setTime(valueOfTime);
   };
 
   const openAdd = () => {
     setIsOpen(!isOpen);
   };
-
-  // const clickPublishedButton = () => {
-  // }
 
   const addNewTodo = () => {
     if (todos === "" || !todos.trim()) {
@@ -119,7 +88,6 @@ const TodoList = (props) => {
           className="TodoList__select"
           value={timezone}
           // defaultValue={Timezones.timezones[0].value}
-          // onChange={(event) => setTimeZone(event.target.value)}
           onChange={(event) => handleTimezoneName(event)}
         >
           {Timezones.timezones.map((option) => (
@@ -131,11 +99,17 @@ const TodoList = (props) => {
       </header>
 
       <div className="TodoList__creator">
-        <div className="DisplayTodos-buttons">
-          <button onClick={() => setSelectedOption("published")}>
+        <div className="buttonForPublished-wrapper">
+          <button
+            // className="buttonForPublished buttonForPublished__published"
+            onClick={() => setSelectedOption("published")}
+          >
             published
           </button>
-          <button onClick={() => setSelectedOption("unpublished")}>
+          <button
+            // className="buttonForPublished__unpublished"
+            onClick={() => setSelectedOption("unpublished")}
+          >
             unpublished
           </button>
         </div>

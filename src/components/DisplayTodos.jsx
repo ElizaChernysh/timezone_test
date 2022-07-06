@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     removeTodo: (id) => dispatch(removeTodos(id)),
     updateTodo: (obj) => dispatch(updateTodos(obj)),
     publishedTodo: (id) => dispatch(publishedTodos(id)),
-    updateTime: (obj) => dispatch(updateTimes(obj)),
+    // updateTime: (obj) => dispatch(updateTimes(obj)),
   };
 };
 
@@ -44,7 +44,6 @@ const DisplayTodos = (props) => {
                   removeTodo={props.removeTodo}
                   updateTodo={props.updateTodo}
                   publishedTodo={props.publishedTodo}
-                  // updateTime={props.updateTime}
                 />
               );
             })

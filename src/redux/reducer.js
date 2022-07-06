@@ -51,14 +51,14 @@ const addTodoReducer = createSlice({
     //   });
     // },
 
-    updateTimes: (state, action) => {
-      return state.map((todo) => {
-        return {
-          ...todo,
-          time: action.payload,
-        };
-      })
-    }
+    // updateTimes: (state, action) => {
+    //   return state.map((todo) => {
+    //     return {
+    //       ...todo,
+    //       time: action.payload,
+    //     };
+    //   })
+    // }
   },
 });
 

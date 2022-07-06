@@ -65,7 +65,6 @@ const TodoItem = (props) => {
           </div>
         </>
       )}
-      {/* {item.published && <span className="TodoList-published">done</span>} */}
     </li>
   );
 };
