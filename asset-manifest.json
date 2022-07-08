@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/timezone_test/static/css/main.3fd508d6.css",
+    "main.js": "/timezone_test/static/js/main.2df1856d.js",
+    "static/js/787.2352a79a.chunk.js": "/timezone_test/static/js/787.2352a79a.chunk.js",
+    "static/media/icon.svg": "/timezone_test/static/media/icon.80032a17e77af63cf94e.svg",
+    "index.html": "/timezone_test/index.html",
+    "main.3fd508d6.css.map": "/timezone_test/static/css/main.3fd508d6.css.map",
+    "main.2df1856d.js.map": "/timezone_test/static/js/main.2df1856d.js.map",
+    "787.2352a79a.chunk.js.map": "/timezone_test/static/js/787.2352a79a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3fd508d6.css",
+    "static/js/main.2df1856d.js"
+  ]
+}
