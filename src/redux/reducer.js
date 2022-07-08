@@ -38,31 +38,10 @@ const addTodoReducer = createSlice({
         return todo;
       });
     },
-
-    // updateTimes: (state, action) => {
-    //   return state.map(todo => {
-    //     if (todo.id === action.payload) {
-    //       return {
-    //         ...todo,
-    //         time: action.payload.time,
-    //       }
-    //     }
-    //     return todo;
-    //   });
-    // },
-
-    // updateTimes: (state, action) => {
-    //   return state.map((todo) => {
-    //     return {
-    //       ...todo,
-    //       time: action.payload,
-    //     };
-    //   })
-    // }
   },
 });
 
 
-export const { addTodos, removeTodos, updateTodos, publishedTodos, updateTimes } = addTodoReducer.actions;
+export const { addTodos, removeTodos, updateTodos, publishedTodos } = addTodoReducer.actions;
 export const reducer = addTodoReducer.reducer;
 

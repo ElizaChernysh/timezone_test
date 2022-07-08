@@ -1,0 +1,11 @@
+@mixin oniPad {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin onMini {
+  @media (max-width: 649px) {
+    @content;
+  }
+}

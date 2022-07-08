@@ -1,0 +1,126 @@
+@import "../../utils/mixins";
+
+
+.TodoList {
+  &__header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 49px;
+    color: #000;
+  
+    @include oniPad {
+      font-size: 30px;
+    }
+  
+    @include onMini {
+      font-size: 24px;
+    }
+  }
+
+  &__select{
+    max-width: 272px;
+  
+    @include oniPad {
+      max-width: 200px;
+      font-size: 12px;
+    }
+  }
+
+  &__select-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__creator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 45px;
+  }
+}
+
+.Preview-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__name {
+    font-weight: 600;
+    width: 187px;
+    font-size: 22px;
+    line-height: 27px;
+    color: rgb(68, 67, 67);
+    align-self: end;
+    position: relative;
+  
+    @include oniPad {
+      font-size: 18px;
+      width: 150px;
+    }
+  
+    @include onMini {
+      display: none;
+    }
+
+    &::before {
+      content: url(../../image/icon.svg);
+      position: absolute;
+      left: -40px;
+    }
+  }
+}
+
+svg {
+  display: none;
+  cursor: pointer;
+
+  @include onMini {
+    display: block;
+    margin-right: 5px;
+  }
+}
+
+.TodoList-button {
+  background-color: rgb(97, 146, 115);
+  color: #fff;
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 600;
+  padding: 20px 34px;
+  border-radius: 57px;
+  border: none;
+  transition: 0.5s;
+
+  &:hover {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  }
+}
+
+.addTodos {
+  display: flex;
+  border: 1px solid black;
+  justify-content: space-between;
+  margin-bottom: 45px;
+
+  &__wrapper {
+    display: flex;
+  }
+}
+
+.addTodos-input {
+  display: inline-block;
+}
+
+.Edit__wrapper {
+  border: 1ps solid grey;
+  padding: 10px;
+  margin-bottom: 10px;
+}

@@ -1,13 +1,11 @@
-import "./App.css";
-import TodoList from "./components/TodoList";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import DisplayTodos from "./components/DisplayTodos";
+import "./App.scss";
+import TodoList from "./components/TodoList/TodoList";
 
-function App() {
+
+const App = () => {
   return (
     <div className="App">
       <TodoList />
-      {/* <DisplayTodos /> */}
     </div>
   );
 }

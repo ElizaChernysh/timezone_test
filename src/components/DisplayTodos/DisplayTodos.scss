@@ -1,0 +1,13 @@
+.DisplayTodos {
+  display: grid;
+}
+
+.DisplayTodos__wrapper {
+  padding: 0;
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)) repeat(3, 200px);
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 0;
+}

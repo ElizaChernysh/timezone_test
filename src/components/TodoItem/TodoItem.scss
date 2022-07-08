@@ -1,0 +1,48 @@
+.TodoList__card {
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+}
+
+.TodoItem__time {
+  padding: 0px 5px;
+  font-size: 16px;
+  text-align: right;
+}
+
+.TodoItem__textarea {
+  padding: 12px 20px 5px;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+  resize: none;
+  border: none;
+}
+
+.Edit-window {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin-top: 20px;
+
+  &__button {
+    display: inline-flex;
+    width: 100%;
+    background-color: #f8f8f8;
+
+    &:hover {
+      background-color: rgb(97, 146, 115);
+    }
+  }
+}
+
+.container {
+  border: 1ps solid rgb(53, 35, 102);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
